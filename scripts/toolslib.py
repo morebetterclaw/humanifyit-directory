@@ -14,9 +14,11 @@ TOTW_JSON = os.path.join(DATA, "tool-of-the-week.json")
 
 FIELDS = ["name", "url", "trade", "one_liner", "uk_price", "price_kind", "pricing_url",
           "price_checked", "free_tier", "public_note", "own_product",
-          "last_checked", "status", "notes"]
+          "last_checked", "status", "notes", "listing"]
 # public_note: short factual line shown on the card (e.g. "Not financial advice.")
 # own_product: "yes" for products made by MoreBetter Studios; shows an "Our own product" badge
+# listing: "on-request" folds the tool under "Bigger firms, price on request" in /tools/
+#          (demo-only tools with no public price); empty means the main view
 
 # The only host whose utm_* tags are kept: our own first-party campaign tags on
 # our own product (LifeLight). Exact host match; every other tracking and

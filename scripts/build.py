@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
-"""Build the Humanify It directory into index.html (standard library only).
+"""Build the Humanify It directory into tools/index.html (standard library only).
 
 Usage: python3 scripts/build.py [--check]
 
 Reads data/tools.csv, data/trades.json and data/tool-of-the-week.json and
-rewrites the parts of index.html between the build marker comments:
+rewrites the parts of tools/index.html between the build marker comments:
 
   <!-- build:totw:start --> ... <!-- build:totw:end -->
   <!-- build:directory:start --> ... <!-- build:directory:end -->
   <!-- build:trades:start --> ... <!-- build:trades:end -->
 
-It also writes newsletter/tool-of-the-week.html (inline styles, for pasting
-into beehiiv) and newsletter/tool-of-the-week.md, and sets the homepage
-<lastmod> in sitemap.xml to today when index.html changes.
+It applies the hero copy in data/site.json to the homepage (index.html),
+writes newsletter/tool-of-the-week.html (inline styles, for pasting into
+beehiiv) and newsletter/tool-of-the-week.md, and sets <lastmod> in
+sitemap.xml to today for / or /tools/ when that page changes.
+
+Tools with listing "on-request" (demo-only, no public price) are folded under
+a collapsed "Bigger firms, price on request" heading in their trade group.
+The phase 1 pages (/fit/, /kit/, /guides/ and so on) are built separately by
+scripts/build_pages.mjs.
 
 Only tools whose status is ok, blocked, timeout or error are listed. Tools
 marked dead, affiliate, rejected or hidden, or never checked, are left off.
@@ -31,7 +37,8 @@ import toolslib as T  # noqa: E402
 
 LISTABLE = {"ok", "blocked", "timeout", "error"}
 SITE = "https://humanifyit.ai/"
-INDEX = os.path.join(T.ROOT, "index.html")
+INDEX = os.path.join(T.ROOT, "index.html")          # homepage: site.json copy only
+TOOLS = os.path.join(T.ROOT, "tools", "index.html")  # the directory
 SITEMAP = os.path.join(T.ROOT, "sitemap.xml")
 NEWS_DIR = os.path.join(T.ROOT, "newsletter")
 SITE_JSON = os.path.join(T.DATA, "site.json")
@@ -217,9 +224,20 @@ def render_directory(groups, total, known_intro=None):
         intro = known_intro.get(slug)
         if intro:
             out.append('<p class="group-intro">%s</p>' % e(intro))
-        out.append('<ul class="listings">')
-        out.extend(render_listing(t) for t in members)
-        out.append("</ul>")
+        main = [t for t in members if t.get("listing") != "on-request"]
+        folded = [t for t in members if t.get("listing") == "on-request"]
+        if main:
+            out.append('<ul class="listings">')
+            out.extend(render_listing(t) for t in main)
+            out.append("</ul>")
+        if folded:
+            out.append('<details class="fold">')
+            out.append('<summary>Bigger firms, price on request <span class="n">(%d)</span></summary>' % len(folded))
+            out.append('<p class="small">These don\'t publish a price. You book a demo or contact their sales team to get one.</p>')
+            out.append('<ul class="listings">')
+            out.extend(render_listing(t) for t in folded)
+            out.append("</ul>")
+            out.append("</details>")
         out.append("</section>")
     return "\n".join(out)
 
@@ -276,7 +294,7 @@ def render_totw(cfg, tool):
 
 
 def render_newsletter(cfg, tool):
-    link = SITE + "#" + anchor(tool["slugs"][0])
+    link = SITE + "tools/#" + anchor(tool["slugs"][0])
     html = (
         '<!-- Humanify It: tool of the week. Paste into beehiiv as an HTML block. -->\n'
         '<div style="border:1px solid #e3e0d8;border-radius:12px;padding:20px;background:#ffffff;'
@@ -311,7 +329,7 @@ def render_newsletter(cfg, tool):
 def replace_block(text, name, content):
     pat = re.compile(r"(<!-- build:%s:start -->)(.*?)(<!-- build:%s:end -->)" % (name, name), re.S)
     if not pat.search(text):
-        sys.exit("marker build:%s not found in index.html" % name)
+        sys.exit("marker build:%s not found in tools/index.html" % name)
     return pat.sub(lambda m: m.group(1) + "\n" + content + "\n" + m.group(3), text, count=1)
 
 
@@ -335,24 +353,29 @@ def main():
     groups = group_tools(trades, tools)
     cfg, totw = pick_totw(tools, groups)
 
-    page = open(INDEX, encoding="utf-8").read()
-    new = apply_site_copy(page)
-    new = replace_block(new, "totw", render_totw(cfg, totw))
+    home = open(INDEX, encoding="utf-8").read()
+    page = open(TOOLS, encoding="utf-8").read()
+    new = replace_block(page, "totw", render_totw(cfg, totw))
     new = replace_block(new, "directory", render_directory(groups, len(tools), {t["slug"]: t["intro"] for t in trades if t.get("intro")}))
     new = replace_block(new, "trades", render_tiles(trades, groups))
     new = re.sub(r"(<!-- build:count -->)\d*(<!-- /build:count -->)", r"\g<1>%d\g<2>" % len(tools), new)
 
     changed = []
-    write_if_changed(INDEX, new, a.check, changed)
+    home = re.sub(r"(<!-- build:count -->)\d*(<!-- /build:count -->)", r"\g<1>%d\g<2>" % len(tools), apply_site_copy(home))
+    write_if_changed(INDEX, home, a.check, changed)
+    write_if_changed(TOOLS, new, a.check, changed)
     nh, nm = render_newsletter(cfg, totw)
     os.makedirs(NEWS_DIR, exist_ok=True)
     write_if_changed(os.path.join(NEWS_DIR, "tool-of-the-week.html"), nh, a.check, changed)
     write_if_changed(os.path.join(NEWS_DIR, "tool-of-the-week.md"), nm, a.check, changed)
-    if "index.html" in changed and os.path.exists(SITEMAP):
+    pages = [(f, loc) for f, loc in (("index.html", ""), (os.path.join("tools", "index.html"), "tools/")) if f in changed]
+    if pages and os.path.exists(SITEMAP):
         sm = open(SITEMAP, encoding="utf-8").read()
         today = datetime.date.today().isoformat()
-        sm2 = re.sub(r"(<loc>https://humanifyit\.ai/</loc><lastmod>)[^<]*(</lastmod>)",
-                     r"\g<1>%s\g<2>" % today, sm)
+        sm2 = sm
+        for _, loc in pages:
+            sm2 = re.sub(r"(<loc>https://humanifyit\.ai/%s</loc><lastmod>)[^<]*(</lastmod>)" % re.escape(loc),
+                         r"\g<1>%s\g<2>" % today, sm2)
         write_if_changed(SITEMAP, sm2, a.check, changed)
 
     print("Listed %d tools in %d groups:" % (len(tools), len(groups)))
