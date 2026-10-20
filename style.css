@@ -49,3 +49,32 @@ footer nav a{margin-right:1rem}
 .prose h2{font-size:1.375rem;margin-top:2rem}
 .notice{background:var(--soft);border-radius:10px;padding:1rem}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+/* Directory */
+header.site nav{display:flex;gap:1rem;flex-wrap:wrap}
+.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.totw{background:var(--soft);border-radius:14px;padding:1.25rem 1.5rem;max-width:44rem;margin:0 0 .5rem}
+.totw .eyebrow{background:#fff;margin-bottom:.5rem}
+.totw h2{font-size:1.5rem;margin:0 0 .5rem}
+.totw p{margin:0 0 .5rem}
+.totw .small{margin:0}
+.filter{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.5rem}
+.chip{font-size:.9375rem;padding:.5rem .875rem;border-radius:999px;background:var(--card);color:var(--ink);border:1px solid #8a8f99}
+.chip:hover{background:var(--soft)}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.chip .n,.group h3 .n{font-weight:400}
+.jump ul{display:flex;flex-wrap:wrap;gap:.25rem 1rem;list-style:none;padding:0;margin:.25rem 0 1.5rem}
+.jump .small{margin:0}
+.group{padding:0 0 2rem}
+.group[hidden]{display:none}
+.group h3{font-size:1.25rem;margin:0 0 .75rem}
+.listings{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1rem;list-style:none;padding:0;margin:0}
+.listing{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1.25rem;overflow-wrap:anywhere}
+.listing h4{font-size:1.0625rem;margin:0 0 .25rem}
+.listing p{margin:0 0 .5rem}
+.facts{list-style:none;padding:0;margin:0;font-size:.9375rem;color:var(--muted)}
+.facts li{margin:.125rem 0}
+.facts .k{font-weight:600;color:var(--ink)}
+.live{flex:none;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);background:var(--soft);border-radius:999px;padding:.125rem .5rem}
+.tile .more{margin:.75rem 0 0;font-weight:600}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.filter[hidden],.jump[hidden]{display:none}
