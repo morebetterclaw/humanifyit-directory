@@ -34,6 +34,33 @@ SITE = "https://humanifyit.ai/"
 INDEX = os.path.join(T.ROOT, "index.html")
 SITEMAP = os.path.join(T.ROOT, "sitemap.xml")
 NEWS_DIR = os.path.join(T.ROOT, "newsletter")
+SITE_JSON = os.path.join(T.DATA, "site.json")
+
+
+def apply_site_copy(page):
+    """Set <title>, the meta/og/twitter descriptions, the H1 and the hero subhead
+    from data/site.json, so hero copy lives in data and survives rebuilds."""
+    if not os.path.exists(SITE_JSON):
+        return page
+    with open(SITE_JSON, encoding="utf-8") as f:
+        c = json.load(f)
+    if len(c["title"]) >= 65:
+        sys.exit("site.json title must be under 65 characters (%d)" % len(c["title"]))
+    if len(c["description"]) >= 160:
+        sys.exit("site.json description must be under 160 characters (%d)" % len(c["description"]))
+    subs = [
+        (r"<title>[^<]*</title>", "<title>%s</title>" % e(c["title"])),
+        (r'<meta name="description" content="[^"]*">', '<meta name="description" content="%s">' % e(c["description"])),
+        (r'<meta property="og:description" content="[^"]*">', '<meta property="og:description" content="%s">' % e(c["description"])),
+        (r'<meta name="twitter:description" content="[^"]*">', '<meta name="twitter:description" content="%s">' % e(c["description"])),
+        (r'<h1 id="headline">[^<]*</h1>', '<h1 id="headline">%s</h1>' % e(c["h1"])),
+        (r'<p class="lede">[^<]*</p>', '<p class="lede">%s</p>' % e(c["subhead"])),
+    ]
+    for pat, rep in subs:
+        page, n = re.subn(pat, lambda m: rep, page, count=1)
+        if n != 1:
+            sys.exit("couldn't find %s in index.html" % pat)
+    return page
 
 
 def e(s):
@@ -291,7 +318,8 @@ def main():
     cfg, totw = pick_totw(tools, groups)
 
     page = open(INDEX, encoding="utf-8").read()
-    new = replace_block(page, "totw", render_totw(cfg, totw))
+    new = apply_site_copy(page)
+    new = replace_block(new, "totw", render_totw(cfg, totw))
     new = replace_block(new, "directory", render_directory(groups, len(tools), {t["slug"]: t["intro"] for t in trades if t.get("intro")}))
     new = replace_block(new, "trades", render_tiles(trades, groups))
     new = re.sub(r"(<!-- build:count -->)\d*(<!-- /build:count -->)", r"\g<1>%d\g<2>" % len(tools), new)
