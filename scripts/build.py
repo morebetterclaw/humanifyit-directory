@@ -142,15 +142,31 @@ def price_html(t, style=""):
         return '<a href="%s" rel="noopener" target="_blank"%s>See price on vendor site<span class="vh"> (opens in a new tab)</span></a>' % (
             e(link or t["url"]), sty) if not style else '<a href="%s"%s>See price on vendor site</a>' % (e(link or t["url"]), sty)
     text = t["uk_price"]
+    dated = price_date_suffix(t)
     if not link:
-        return e(text)
+        return e(text) + dated
     if style:
-        return '<a href="%s"%s>%s</a>' % (e(link), sty, e(text))
-    return '<a href="%s" rel="noopener" target="_blank">%s<span class="vh"> (pricing, opens in a new tab)</span></a>' % (e(link), e(text))
+        return '<a href="%s"%s>%s</a>%s' % (e(link), sty, e(text), dated)
+    return '<a href="%s" rel="noopener" target="_blank">%s<span class="vh"> (pricing, opens in a new tab)</span></a>%s' % (e(link), e(text), dated)
+
+
+def price_date_suffix(t):
+    """' (checked 20 Oct)' for GBP prices, from price_checked, else the last
+    successful link check. Converted ('approx') prices carry their own date in
+    the text, and vendor-site cards have no number, so neither gets one."""
+    if t["price_kind"] != "gbp" or "(checked " in t["uk_price"]:
+        return ""
+    for iso in (t.get("price_checked"), t.get("last_checked")):
+        try:
+            d = datetime.date.fromisoformat(iso or "")
+        except ValueError:
+            continue
+        return " (checked %d %s)" % (d.day, d.strftime("%b"))
+    return ""
 
 
 def price_text(t):
-    return "See price on vendor site" if t["price_kind"] == "vendor" else t["uk_price"]
+    return "See price on vendor site" if t["price_kind"] == "vendor" else t["uk_price"] + price_date_suffix(t)
 
 
 def render_listing(t):
