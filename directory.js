@@ -24,7 +24,7 @@
     });
     if (announce && status) {
       status.textContent = filter === 'all' ? 'Showing all trades.' :
-        'Showing ' + shown + (shown === 1 ? ' tool' : ' tools') + ' for ' + label + '.';
+        'Showing ' + shown + (shown === 1 ? ' tool' : ' tools') + ' ' + (/^for /i.test(label) ? label.toLowerCase() : 'for ' + label) + '.';
     }
   }
 

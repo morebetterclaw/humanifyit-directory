@@ -78,3 +78,6 @@ header.site nav{display:flex;gap:1rem;flex-wrap:wrap}
 .tile .more{margin:.75rem 0 0;font-weight:600}
 a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 .filter[hidden],.jump[hidden]{display:none}
+.own-badge{display:inline-block;margin:0 0 .5rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#1d2433;background:#fff;border:1px solid #1d2433;border-radius:999px;padding:.125rem .5rem}
+.listing .note{font-size:.9375rem;font-weight:600;color:var(--ink)}
+.group-intro{color:var(--muted);margin:-.5rem 0 .75rem}

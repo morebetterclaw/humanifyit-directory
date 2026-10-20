@@ -10,6 +10,7 @@ Usage:
 
 Only use this for submissions Daksh has approved (see MODERATION.md).
 The URL is cleaned of tracking parameters; affiliate-looking URLs are refused.
+utm_* tags are kept only for lifelight.app (our own first-party campaign tags).
 The new row has no status until you run scripts/check_links.py, so it stays
 off the page until its link has been checked. Then run scripts/build.py.
 """
@@ -34,8 +35,12 @@ def main():
                     help="gbp: show --uk-price as given; approx: converted price written "
                          "'approx. £12/month (checked 20 Oct)'; vendor: show 'See price on vendor site'")
     ap.add_argument("--pricing-url", default="", help="the tool's own pricing page (plain link)")
-    ap.add_argument("--free-tier", required=True, choices=["yes", "no", "trial"],
-                    help="trial = no free tier, but a free trial")
+    ap.add_argument("--free-tier", default="",
+                    help="yes, no, trial (no free tier but a free trial), or 'Yes (details)'; "
+                         "leave out if not given and the card won't show a free-tier line")
+    ap.add_argument("--note", default="", help="short factual line shown on the card, e.g. 'Not financial advice.'")
+    ap.add_argument("--own-product", action="store_true",
+                    help="made by MoreBetter Studios: shows an 'Our own product' badge")
     ap.add_argument("--notes", default="")
     a = ap.parse_args()
 
@@ -48,6 +53,10 @@ def main():
     if stripped:
         print("Removed tracking parameters:", ", ".join(stripped))
 
+    ft = a.free_tier.strip()
+    if ft and not re.match(r"^(yes|no|trial)$|^yes \(.+\)$", ft, re.I):
+        sys.exit("--free-tier must be yes, no, trial or 'Yes (details)'")
+    ft = {"yes": "Yes", "no": "No", "trial": "Trial"}.get(ft.lower(), ft)
     if a.price_kind != "vendor" and not a.uk_price:
         sys.exit("--uk-price is needed unless --price-kind vendor")
     if a.price_kind == "approx" and not re.search(r"\bapprox\. £[\d.,]+.*\(checked [^)]+\)", a.uk_price):
@@ -74,7 +83,8 @@ def main():
         "one_liner": " ".join(a.one_liner.split()), "uk_price": " ".join(a.uk_price.split()),
         "price_kind": a.price_kind, "pricing_url": pricing,
         "price_checked": datetime.date.today().isoformat() if a.price_kind != "vendor" else "",
-        "free_tier": {"yes": "Yes", "no": "No", "trial": "Trial"}[a.free_tier],
+        "free_tier": ft, "public_note": " ".join(a.note.split()),
+        "own_product": "yes" if a.own_product else "",
         "last_checked": "", "status": "", "notes": a.notes,
     })
     T.write_tools(rows)

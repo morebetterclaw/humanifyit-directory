@@ -39,6 +39,10 @@ git add -A && git commit -m "Add Tool to the directory" && git push
 
 `add_tool.py` strips tracking parameters and refuses affiliate-looking URLs. A new row has no status until `check_links.py` runs, so it can't be listed before its link is checked. GitHub Pages rebuilds from `main` and the change is usually live in about a minute.
 
+## Our own products and the one UTM exception
+
+Products made by MoreBetter Studios (currently LifeLight) carry an "Our own product" badge: add them with `--own-product`. They're the only links allowed to keep `utm_*` tags, because those are our own first-party campaign tags, not affiliate tags. The exception is the exact host `lifelight.app` (set in `FIRST_PARTY_UTM_HOSTS` in `scripts/toolslib.py`). Every other host, including subdomains such as `www.lifelight.app`, still has `utm_*` and all other tracking and affiliate parameters stripped, and LifeLight links still have non-UTM tracking parameters (such as `ref`) stripped.
+
 ## Removing or hiding a tool
 
 Set its `status` in `data/tools.csv` to `hidden` (or `rejected`), run `python3 scripts/build.py`, commit and push.

@@ -13,7 +13,15 @@ TRADES_JSON = os.path.join(DATA, "trades.json")
 TOTW_JSON = os.path.join(DATA, "tool-of-the-week.json")
 
 FIELDS = ["name", "url", "trade", "one_liner", "uk_price", "price_kind", "pricing_url",
-          "price_checked", "free_tier", "last_checked", "status", "notes"]
+          "price_checked", "free_tier", "public_note", "own_product",
+          "last_checked", "status", "notes"]
+# public_note: short factual line shown on the card (e.g. "Not financial advice.")
+# own_product: "yes" for products made by MoreBetter Studios; shows an "Our own product" badge
+
+# The only host whose utm_* tags are kept: our own first-party campaign tags on
+# our own product (LifeLight). Exact host match; every other tracking and
+# affiliate rule still applies to it.
+FIRST_PARTY_UTM_HOSTS = {"lifelight.app"}
 
 # price_kind: how the price is shown on the page
 #   gbp     uk_price shown exactly as given (a GBP price from the tool's UK pricing)
@@ -117,7 +125,9 @@ def clean_url(raw):
     kept, stripped = [], []
     for k, v in parse_qsl(parts.query, keep_blank_values=True):
         kl = k.lower()
-        if kl in STRIP_PARAMS or kl.startswith(STRIP_PREFIXES):
+        if kl.startswith("utm_") and host in FIRST_PARTY_UTM_HOSTS:
+            kept.append((k, v))
+        elif kl in STRIP_PARAMS or kl.startswith(STRIP_PREFIXES):
             stripped.append(k)
         else:
             kept.append((k, v))
@@ -139,7 +149,9 @@ def clean_url(raw):
 def free_tier_label(value):
     v = (value or "").strip().lower()
     if not v:
-        return "Not stated"
+        return ""  # not given: the card leaves the free-tier line off
+    if re.match(r"^yes\s*\(.+\)$", v):
+        return value.strip()[:1].upper() + value.strip()[1:]  # e.g. "Yes (first Spark check)"
     if re.match(r"^(y|yes|true|1|free)\b", v) or v.startswith("yes"):
         return "Yes"
     if "trial" in v:
@@ -164,7 +176,7 @@ def split_trades(value):
     return [p.strip() for p in re.split(r"[;|/,&+]+|\band\b", value or "") if p.strip()]
 
 
-GENERAL_RE = re.compile(
+GENERAL_RE = re.compile(  # "for the owner" is its own trade, not general
     r"^(all|any|general|every|cross|multi|various|most|everyone|small business(es)?|smes?|smbs?|admin|office)\b")
 
 

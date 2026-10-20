@@ -82,11 +82,12 @@ def load():
 def group_tools(trades, tools):
     """Ordered list of (slug, name, [tools]) for trades with at least one tool."""
     known = {t["slug"]: t for t in trades}
-    order = [t["slug"] for t in trades if t["slug"] != "any-business"]
+    tail = ["any-business", "for-the-owner"]  # always last, in this order
+    order = [t["slug"] for t in trades if t["slug"] not in tail]
     extras = {}
     for slug in tool_slugs_extra(tools):
         extras.setdefault(slug, slug[2:].replace("-", " ").capitalize())
-    order += sorted(extras, key=lambda s: extras[s].lower()) + ["any-business"]
+    order += sorted(extras, key=lambda s: extras[s].lower()) + tail
     groups = []
     for slug in order:
         members = sorted([t for t in tools if slug in t["slugs"]], key=lambda t: t["name"].lower())
@@ -127,19 +128,27 @@ def render_listing(t):
     checked = nice_date(t["last_checked"])
     checked_html = ('<time datetime="%s">%s</time>' % (e(t["last_checked"]), e(checked))
                     if checked else "not yet confirmed")
+    own = t["own_product"].lower() == "yes"
+    facts = ['    <li><span class="k">UK price:</span> %s</li>' % price_html(t)]
+    if t["free"]:
+        facts.append('    <li><span class="k">Free tier:</span> %s</li>' % e(t["free"]))
+    facts.append('    <li><span class="k">Last checked:</span> %s</li>' % checked_html)
     return (
-        '<li class="listing">\n'
+        '<li class="listing%s">\n'
+        '%s'
         '  <h4><a href="%s" rel="noopener" target="_blank">%s<span class="vh"> (opens in a new tab)</span></a></h4>\n'
         '  <p>%s</p>\n'
-        '  <ul class="facts">\n'
-        '    <li><span class="k">UK price:</span> %s</li>\n'
-        '    <li><span class="k">Free tier:</span> %s</li>\n'
-        '    <li><span class="k">Last checked:</span> %s</li>\n'
-        '  </ul>\n'
-        '</li>' % (e(t["url"]), e(t["name"]), e(t["one_liner"]), price_html(t), e(t["free"]), checked_html))
+        '%s'
+        '  <ul class="facts">\n%s\n  </ul>\n'
+        '</li>' % (" own" if own else "",
+                   '  <p class="own-badge">Our own product</p>\n' if own else "",
+                   e(t["url"]), e(t["name"]), e(t["one_liner"]),
+                   ('  <p class="note">%s</p>\n' % e(t["public_note"])) if t["public_note"] else "",
+                   "\n".join(facts)))
 
 
-def render_directory(groups, total):
+def render_directory(groups, total, known_intro=None):
+    known_intro = known_intro or {}
     chips = ['<button type="button" class="chip" data-filter="all" aria-pressed="true">All <span class="n">(%d)</span></button>' % total]
     jumps = []
     for slug, name, members in groups:
@@ -160,6 +169,9 @@ def render_directory(groups, total):
         out.append('<section class="group" id="%s" data-trade="%s" aria-labelledby="%s-h">' % (e(a), e(a), e(a)))
         out.append('<h3 id="%s-h">%s <span class="n">(%d %s)</span></h3>'
                    % (e(a), e(name), len(members), "tool" if len(members) == 1 else "tools"))
+        intro = known_intro.get(slug)
+        if intro:
+            out.append('<p class="group-intro">%s</p>' % e(intro))
         out.append('<ul class="listings">')
         out.extend(render_listing(t) for t in members)
         out.append("</ul>")
@@ -179,12 +191,14 @@ def render_tiles(trades, groups):
         out.append('<li class="tile">')
         out.append("  <h3>%s %s</h3>" % (e(t["name"]), badge))
         out.append('  <p class="who">%s</p>' % e(t["who"]))
-        out.append("  <ul>")
-        out.extend("    <li>%s</li>" % e(x) for x in t["examples"])
-        out.append("  </ul>")
+        if t["examples"]:
+            out.append("  <ul>")
+            out.extend("    <li>%s</li>" % e(x) for x in t["examples"])
+            out.append("  </ul>")
         if n:
             out.append('  <p class="more"><a href="#%s">See %d %s for %s</a></p>'
-                       % (e(anchor(t["slug"])), n, "tool" if n == 1 else "tools", e(t["name"].lower())))
+                       % (e(anchor(t["slug"])), n, "tool" if n == 1 else "tools",
+                          e(t["name"].lower()[4:] if t["name"].lower().startswith("for ") else t["name"].lower())))
         out.append("</li>")
     out.append("</ul>")
     return "\n".join(out)
@@ -278,7 +292,7 @@ def main():
 
     page = open(INDEX, encoding="utf-8").read()
     new = replace_block(page, "totw", render_totw(cfg, totw))
-    new = replace_block(new, "directory", render_directory(groups, len(tools)))
+    new = replace_block(new, "directory", render_directory(groups, len(tools), {t["slug"]: t["intro"] for t in trades if t.get("intro")}))
     new = replace_block(new, "trades", render_tiles(trades, groups))
     new = re.sub(r"(<!-- build:count -->)\d*(<!-- /build:count -->)", r"\g<1>%d\g<2>" % len(tools), new)
 
