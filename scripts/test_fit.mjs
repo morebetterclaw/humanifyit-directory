@@ -245,3 +245,12 @@ test('every answer combination gives 3 distinct tools within budget', () => {
   }
   assert.ok(n > 5000);
 });
+
+test('hash: malformed %-encoding is skipped, not thrown', () => {
+  assert.doesNotThrow(() => Fit.parseHash('#u=%E0%A4'));
+  assert.deepEqual(Fit.parseHash('#u=%E0%A4'), {});
+  assert.deepEqual(Fit.parseHash('#t=small&u=%E0%A4&b=0'), { t: 'small', b: '0' });
+  const r = Fit.resolve(data, 'salon', 'no_shows', Fit.parseHash('#t=solo&b=20&s=none&c=ok&u=%E0%A4'));
+  assert.equal(r.newSpend, 14.95);
+  assert.doesNotThrow(() => Fit.renderKit(data, 'salon', 'no_shows', Fit.parseHash('#u=%E0%A4')));
+});

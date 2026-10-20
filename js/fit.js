@@ -37,7 +37,12 @@
       if (!pair) return;
       var i = pair.indexOf('=');
       var k = i < 0 ? pair : pair.slice(0, i);
-      var v = i < 0 ? '' : decodeURIComponent(pair.slice(i + 1));
+      var v;
+      try {
+        v = i < 0 ? '' : decodeURIComponent(pair.slice(i + 1));
+      } catch (e) {
+        return; // malformed %-encoding (a hand-edited link): skip this pair
+      }
       out[k] = k === 'u' ? (v ? v.split(',') : []) : v;
     });
     return out;
@@ -301,7 +306,7 @@
       (res.newSpend === 0 ? ' (nothing new to pay for)' : '') + '</p>');
     h.push('<p><span class="k">Kit total, including what you already pay:</span> <strong>' + ax(res.totalApprox) +
       money(res.kitTotal) + ' a month</strong>' + (res.unknownExisting ? ', plus whatever you pay for your current app' : '') + '</p>');
-    h.push('<p class="small">Prices are per month, as each vendor quotes them. Most are before VAT, and we\'ve marked \u2018+ VAT\u2019 where the vendor says so. Card fees are extra wherever you take payments. \u2018approx.\u2019 means the figure came from a US-dollar page or a UK guide rather than the vendor\'s own UK page, so check it before you buy. Prices checked on ' + esc(checkedOn) + '.</p>');
+    h.push('<p class="small">Prices are per month, as each vendor quotes them. Most are before VAT, and we\'ve marked \u2018+ VAT\u2019 where the vendor says so. Card fees are extra wherever you take payments. \u2018approx.\u2019 means the figure was converted from dollars or euros, or taken from a guide rather than the vendor\'s own UK page, so check it before you buy. Prices checked on ' + esc(checkedOn) + '.</p>');
     h.push('</div>');
 
     if (res.notes.length) {

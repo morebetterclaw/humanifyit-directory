@@ -6,7 +6,7 @@ Nothing submitted through the form goes live automatically. Every tool is review
 
 - The "List your tool" form on https://humanifyit.ai/ posts to FormSubmit (`https://formsubmit.co/68da7f36a955074d31e03a22f4140081`).
 - FormSubmit emails it to Daksh's inbox, **morebetterstudios@agentmail.to**, with the subject **`[Humanify It] Tool submission for review`**. It contains the sender's name and email, the tool name and the tool's website.
-- The sender gets an automatic reply from FormSubmit (`_autoresponse`) saying a person reviews every submission before anything is listed and there's no fee. FormSubmit only sends this when its reCAPTCHA is left on, so don't add `_captcha=false` to the form.
+- The sender gets an automatic reply from FormSubmit (`_autoresponse`) saying we review every submission before anything is listed, and there's no fee. FormSubmit only sends this when its reCAPTCHA is left on, so don't add `_captcha=false` to the form.
 
 ## 2. Daksh checks it
 

@@ -359,6 +359,8 @@ def main():
     new = replace_block(new, "directory", render_directory(groups, len(tools), {t["slug"]: t["intro"] for t in trades if t.get("intro")}))
     new = replace_block(new, "trades", render_tiles(trades, groups))
     new = re.sub(r"(<!-- build:count -->)\d*(<!-- /build:count -->)", r"\g<1>%d\g<2>" % len(tools), new)
+    # the /tools/ meta, og and twitter descriptions open with the count too
+    new = re.sub(r'(content=")\d+( AI tools for UK )', r"\g<1>%d\g<2>" % len(tools), new)
 
     changed = []
     home = re.sub(r"(<!-- build:count -->)\d*(<!-- /build:count -->)", r"\g<1>%d\g<2>" % len(tools), apply_site_copy(home))

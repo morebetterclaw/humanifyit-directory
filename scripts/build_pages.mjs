@@ -382,7 +382,7 @@ for (const trade of TRADES) {
     <li>The \u2018same settings in other apps\u2019 sections, for the other apps ${esc(t.name.toLowerCase())}s use.</li>
     <li>More ready-to-paste prompts that start from your measurements card.</li>
     <li>A one-page chart of which app fits you.</li>${code === '999' ? `
-    <li>12 months of updates: we recheck each guide every 90 days and add new ${esc(t.name.toLowerCase())} guides during the year.</li>` : ''}
+    <li>12 months of updates: we plan to recheck each guide every 90 days and add new ${esc(t.name.toLowerCase())} guides during the year.</li>` : ''}
   </ul>
   <form class="signup" method="get" action="${BEEHIIV}">
     <label for="po-email">Email me when the ${esc(t.kit)} is ready</label>
