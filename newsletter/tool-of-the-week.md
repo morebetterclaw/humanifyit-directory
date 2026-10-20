@@ -6,4 +6,4 @@ UK price: [See price on vendor site](https://www.canva.com/en_gb/pricing/) · Fr
 
 [See more tools for your trade on Humanify It](https://humanifyit.ai/tools/#trade-salons)
 
-_Every tool is checked by a person before it's listed. We don't take payment for listings or use affiliate links._
+_Every tool is reviewed before it's listed. We don't take payment for listings or use affiliate links._

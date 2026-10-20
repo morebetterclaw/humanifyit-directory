@@ -1,6 +1,6 @@
 # Moderation: "List your tool" submissions
 
-Nothing submitted through the form goes live automatically. Every tool is checked by a person before it's listed.
+Nothing submitted through the form goes live automatically. Every tool is reviewed before it's listed.
 
 ## 1. A submission arrives
 

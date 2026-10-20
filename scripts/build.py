@@ -308,7 +308,7 @@ def render_newsletter(cfg, tool):
         ' &middot; Listed under: %s</p>\n'
         '  <p style="margin:0;font-size:14px;">'
         '<a href="%s" style="color:#0b5d4b;">See more tools for your trade on Humanify It</a></p>\n'
-        '  <p style="margin:12px 0 0;font-size:12px;color:#4a5466;">Every tool is checked by a person before '
+        '  <p style="margin:12px 0 0;font-size:12px;color:#4a5466;">Every tool is reviewed before '
         "it's listed. We don't take payment for listings or use affiliate links.</p>\n"
         '</div>\n' % (e(tool["url"]), e(tool["name"]), e(cfg["write_up"]),
                       price_html(tool, "color:#0b5d4b;"), e(tool["free"]),
@@ -320,7 +320,7 @@ def render_newsletter(cfg, tool):
         "**Tool of the week: [%s](%s)**\n\n%s\n\n"
         "UK price: %s · Free tier: %s · Listed under: %s\n\n"
         "[See more tools for your trade on Humanify It](%s)\n\n"
-        "_Every tool is checked by a person before it's listed. We don't take payment for listings or use affiliate links._\n"
+        "_Every tool is reviewed before it's listed. We don't take payment for listings or use affiliate links._\n"
         % (md(tool["name"]), tool["url"], md(cfg["write_up"]), "[%s](%s)" % (md(price_text(tool)), tool["pricing_url"] or tool["url"]) if (tool["price_kind"] == "vendor" or tool["pricing_url"]) else md(price_text(tool)),
            tool["free"], md(", ".join(tool["group_names"])), link))
     return html, mdtext
