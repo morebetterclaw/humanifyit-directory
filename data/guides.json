@@ -1,0 +1,682 @@
+{
+ "S1": {
+  "slug": "salon-instagram-week-canva",
+  "trade": "salon",
+  "title": "Make a week of Instagram posts from your phone photos with Canva Free",
+  "meta_title": "A week of Instagram posts with Canva Free, for salons | Humanify It",
+  "description": "Step-by-step, free: turn seven photos of your salon work into a week of Instagram posts with Canva Free. UK, checked 20 Oct 2026.",
+  "for": "Salons, barbers and beauty businesses, any team size",
+  "checked_on": "2026-10-20",
+  "vendors_affiliation": "Canva",
+  "end": "Seven Instagram posts made from your own photos, saved as image files and ready to post one a day.",
+  "time": "About an hour, in one sitting, once you've picked your photos.",
+  "cost": {
+   "text": "£0. Canva Free has no monthly charge.",
+   "src": [
+    12
+   ],
+   "free_tier": "Yes. Canva's AI writing tools come with a limited allowance on the Free plan.",
+   "free_src": [
+    11
+   ]
+  },
+  "before": [
+   "A free Canva account, on canva.com or in the Canva app on your phone.",
+   "Seven photos of your work on your phone. Only use photos of clients who've said yes to being posted.",
+   "Your measurements card, if you'd like help writing the captions.",
+   "Instagram on your phone, signed in to your business account."
+  ],
+  "steps": [
+   {
+    "do": "Search Canva for an Instagram post template.",
+    "where": "Home > search bar > type 'Instagram post'",
+    "shot": "Canva's home screen with 'Instagram post' typed into the search bar and template results below.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Pick a template with one large photo and a short line of text, and open it.",
+    "where": "Template results > select a template",
+    "shot": "A simple one-photo template open in the editor.",
+    "check": "the template opens in the editor, ready to change.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Upload your seven photos.",
+    "where": "Editor side panel > Uploads > Upload files",
+    "shot": "The Uploads tab with seven demo photos of finished hair and nails.",
+    "check": "your photos appear in the Uploads tab.",
+    "src": [
+     3
+    ]
+   },
+   {
+    "do": "Drag your first photo onto the template's photo until it snaps into place.",
+    "where": "Uploads tab > drag the photo over the template's picture",
+    "shot": "A photo being dragged onto the template's picture, with the frame highlighted.",
+    "check": "your photo has replaced the template's picture.",
+    "src": [
+     4
+    ]
+   },
+   {
+    "do": "Move or resize the photo inside its frame, then select Done.",
+    "where": "Double-click the photo > drag it, or drag the white corner handles > Done",
+    "shot": "The photo inside the frame with its corner handles showing.",
+    "src": [
+     4
+    ]
+   },
+   {
+    "do": "Change the words. Double-click the text box, type your own line, then click outside the box.",
+    "where": "Double-click the text box",
+    "shot": "The template's text box selected, with new wording typed in.",
+    "src": [
+     5
+    ]
+   },
+   {
+    "do": "Make six more copies of this page.",
+    "where": "Upper corner of the page > Duplicate page, six times",
+    "shot": "The page's upper corner with the Duplicate page button marked.",
+    "check": "you can scroll through seven pages.",
+    "src": [
+     6
+    ]
+   },
+   {
+    "do": "On each new page, drag in a different photo and change the words.",
+    "where": "Uploads tab, then double-click each text box",
+    "shot": "Seven pages, each with a different demo photo.",
+    "src": [
+     4,
+     5
+    ]
+   },
+   {
+    "do": "Read every page once for spelling, prices and opening times.",
+    "where": "Scroll through the pages",
+    "shot": "One finished page shown full size for checking.",
+    "src": []
+   },
+   {
+    "do": "Download all seven pages as JPG images.",
+    "where": "Share > Download > File type: JPG > choose All pages > Download",
+    "shot": "The Download menu with JPG chosen and all pages selected.",
+    "check": "seven image files are in your downloads, or in your phone's photos if you're using the app.",
+    "src": [
+     7,
+     8
+    ]
+   },
+   {
+    "do": "Post one a day from the Instagram app, with a caption. Or post a page straight from Canva.",
+    "where": "To post from Canva: Share > Instagram, and connect your account the first time",
+    "shot": "The Share menu with Instagram shown in the list of apps.",
+    "check": "the post shows on your Instagram profile.",
+    "src": [
+     9
+    ]
+   }
+  ],
+  "after_steps": "Planning and scheduling posts in advance from Canva is part of Canva Pro, so this guide doesn't cover it.",
+  "after_steps_src": [
+   2
+  ],
+  "prompts_intro": "Paste these into ChatGPT, or into Canva's Magic Write, which uses your Free plan's limited AI allowance. Check every caption before you post it.",
+  "prompts_src": [
+   10,
+   11
+  ],
+  "prompts": [
+   {
+    "title": "Seven captions for the week",
+    "text": "Use my measurements card below. Write seven short Instagram captions, one for each day of the week, for photos of my work. Keep each one under 150 characters, write in my tone, don't use any of the words I never use, and end each one the way I sign off.\n[paste your measurements card]\nThis week's photos: [one line about each photo, for example 'balayage on long dark hair']"
+   },
+   {
+    "title": "Photo ideas",
+    "text": "Use my measurements card below. Suggest seven photos I could take in the salon this week that show what we do, without showing a client's face. Give each idea in one line.\n[paste your measurements card]"
+   },
+   {
+    "title": "Opening hours and booking",
+    "text": "Use my measurements card below. Write a short Instagram caption about my opening hours and how to book, in my tone, under 200 characters.\n[paste your measurements card]"
+   },
+   {
+    "title": "Make a caption sound like me",
+    "text": "Use my measurements card below. Rewrite this caption so it sounds like me, in under 150 characters, and sign off the way I do: [paste the caption]\n[paste your measurements card]"
+   }
+  ],
+  "snags": [
+   {
+    "text": "If your photo won't snap into the template, the template's picture isn't a frame. Delete that picture, click your photo in the Uploads tab to add it, then drag its corners to resize it.",
+    "src": [
+     3,
+     4
+    ]
+   },
+   {
+    "text": "If the Download button says 'Fix issue', open it to see what's wrong. It can mean a photo is still uploading or you've hit a daily download limit.",
+    "src": [
+     7
+    ]
+   },
+   {
+    "text": "If Canva asks you to pay when you download, the design has a paid (Pro) element in it. Swap that element for a free one, or delete it.",
+    "src": [
+     7
+    ]
+   },
+   {
+    "text": "If sharing to Instagram from Canva doesn't go through, download the JPG and post it from the Instagram app instead.",
+    "src": [
+     9
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "title": "Canva: Instagram post templates",
+    "url": "https://www.canva.com/instagram-posts/templates/"
+   },
+   {
+    "title": "Canva: Instagram post creator",
+    "url": "https://www.canva.com/create/instagram-posts/"
+   },
+   {
+    "title": "Canva Help: Upload media from your device",
+    "url": "https://www.canva.com/en_gb/help/upload-media/"
+   },
+   {
+    "title": "Canva Help: Use frames and crop images into a shape",
+    "url": "https://www.canva.com/help/using-frames/"
+   },
+   {
+    "title": "Canva Help: Add and edit text",
+    "url": "https://www.canva.com/en_gb/help/add-and-edit-text/"
+   },
+   {
+    "title": "Canva Help: Add, duplicate and delete pages",
+    "url": "https://www.canva.com/en_gb/help/manage-pages/"
+   },
+   {
+    "title": "Canva Help: Download or save designs to your device",
+    "url": "https://www.canva.com/en_gb/help/download-or-purchase/"
+   },
+   {
+    "title": "Canva Help: Download file types",
+    "url": "https://www.canva.com/en_gb/help/download-file-types/"
+   },
+   {
+    "title": "Canva Help: Share on social media and messaging apps",
+    "url": "https://www.canva.com/help/share-on-socials-and-messaging/"
+   },
+   {
+    "title": "Canva Help: About Magic Write",
+    "url": "https://www.canva.com/en_gb/help/about-magic-write/"
+   },
+   {
+    "title": "Canva Help: AI access on each plan",
+    "url": "https://www.canva.com/en_gb/help/ai-access/"
+   },
+   {
+    "title": "Canva: UK pricing",
+    "url": "https://www.canva.com/en_gb/pricing/"
+   }
+  ],
+  "changelog": [
+   {
+    "date": "2026-10-20",
+    "text": "First version, written from Canva's help pages. Screenshots to come after a walkthrough in a live account."
+   }
+  ],
+  "written_from": "Canva's help pages"
+ },
+ "C1": {
+  "slug": "cafe-google-reviews-chatgpt",
+  "trade": "cafe",
+  "title": "Reply to your Google reviews in your own voice with ChatGPT Free",
+  "meta_title": "Reply to Google reviews with ChatGPT Free, for cafés | Humanify It",
+  "description": "Step-by-step, free: draft replies to your café's Google reviews in your own voice with ChatGPT Free, then post them yourself. UK, checked 20 Oct 2026.",
+  "for": "Cafés and coffee shops, any team size",
+  "checked_on": "2026-10-20",
+  "vendors_affiliation": "OpenAI or Google",
+  "end": "A draft reply to each new Google review, written in your voice, that you check and post yourself.",
+  "time": "About 30 minutes to set up, then a few minutes for each review.",
+  "cost": {
+   "text": "£0. ChatGPT has a free plan, and a Google Business Profile is free.",
+   "src": [
+    5,
+    6
+   ],
+   "free_tier": "Yes, both.",
+   "free_src": [
+    5,
+    6
+   ]
+  },
+  "before": [
+   "A verified Google Business Profile for your café. You can only reply to reviews once your business is verified.",
+   "The Google account that manages your Business Profile.",
+   "A free ChatGPT account.",
+   "Your measurements card."
+  ],
+  "steps": [
+   {
+    "do": "In ChatGPT, turn off model training if you'd rather your chats weren't used to improve OpenAI's models.",
+    "where": "Your profile > Settings > Data controls > Improve the model for everyone > switch off",
+    "shot": "ChatGPT's Data controls settings with the 'Improve the model for everyone' switch marked.",
+    "check": "the switch shows as off.",
+    "src": [
+     3,
+     4
+    ]
+   },
+   {
+    "do": "Go to your Business Profile.",
+    "where": "Search Google or Google Maps for your café's name, signed in to the Google account that manages it",
+    "shot": "A demo café's Business Profile in Google Search, seen by its owner.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Open your reviews.",
+    "where": "Business Profile > Read reviews",
+    "shot": "The list of reviews on the demo profile, with Read reviews marked.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Copy the words of one review. Leave out the reviewer's name.",
+    "where": "Select the review text and copy it",
+    "shot": "One demo review with its text selected.",
+    "src": [
+     2
+    ]
+   },
+   {
+    "do": "Start a new chat in ChatGPT and paste in prompt 1 below (or prompt 2 for an unhappy review), then your measurements card, then the review.",
+    "where": "ChatGPT > New chat",
+    "shot": "A new ChatGPT chat with the prompt, card and demo review pasted in.",
+    "src": []
+   },
+   {
+    "do": "Read the draft and change anything that isn't true or doesn't sound like you.",
+    "where": "Copy the draft into your notes app, or edit it in the reply box later",
+    "shot": "A draft reply with one line edited.",
+    "src": []
+   },
+   {
+    "do": "Keep the reply short and polite, never share anything private about the reviewer, and leave out offers or promotions.",
+    "where": "",
+    "shot": "",
+    "src": [
+     2
+    ]
+   },
+   {
+    "do": "Back on your Business Profile, find the review and select Reply.",
+    "where": "Read reviews > Reply, next to the review",
+    "shot": "The Reply button next to a demo review.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Paste your reply and select Reply.",
+    "where": "Reply box > Reply",
+    "shot": "The reply box with the checked reply pasted in.",
+    "check": "your reply shows under the review. Google checks replies first, which usually takes up to 10 minutes but can take up to 30 days. The customer is told you've replied.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "To change or remove a reply later, find it and select Edit or Delete.",
+    "where": "Read reviews > your reply > Edit or Delete",
+    "shot": "A posted demo reply with Edit and Delete marked.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Pick a regular time each week to go through new reviews the same way.",
+    "where": "Your diary",
+    "shot": "",
+    "src": []
+   }
+  ],
+  "after_steps": "If you'd rather a chat wasn't kept in your ChatGPT history, use a temporary chat. OpenAI says temporary chats aren't used to train its models and are kept for up to 30 days.",
+  "after_steps_src": [
+   3
+  ],
+  "prompts_intro": "Paste these into ChatGPT with your measurements card and the review. Never paste the reviewer's name or anything private about them. Check every reply before you post it.",
+  "prompts_src": [],
+  "prompts": [
+   {
+    "title": "A happy review",
+    "text": "Use my measurements card below. Write a reply to this Google review of my café. Thank them in my tone, mention one specific thing they liked, keep it under 60 words, don't use any of the words I never use, and sign off the way I do. Don't add any offers.\n[paste your measurements card]\nReview: [paste the review, without the reviewer's name]"
+   },
+   {
+    "title": "An unhappy review",
+    "text": "Use my measurements card below. Write a calm reply to this unhappy Google review of my café. Thank them for telling us, apologise for what went wrong without arguing, and invite them to get in touch with us directly. Keep it under 80 words, don't repeat any personal details, don't add any offers, and sign off the way I do.\n[paste your measurements card]\nReview: [paste the review, without the reviewer's name]"
+   },
+   {
+    "title": "A mixed review",
+    "text": "Use my measurements card below. Write a reply to this mixed Google review of my café. Thank them for what they enjoyed, briefly acknowledge what disappointed them, and keep it under 70 words, in my tone, signed off the way I do. Don't add any offers.\n[paste your measurements card]\nReview: [paste the review, without the reviewer's name]"
+   },
+   {
+    "title": "Short thank-yous",
+    "text": "Use my measurements card below. Write five different thank-you replies of under 25 words each that I can adapt for short positive reviews, so my replies don't all read the same. Use my tone and sign-off.\n[paste your measurements card]"
+   }
+  ],
+  "snags": [
+   {
+    "text": "If you can't see Reply, check your Business Profile is verified and that you're signed in to the Google account that manages it.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "text": "If your reply doesn't show yet, Google may still be checking it. That usually takes up to 10 minutes but can take up to 30 days. If it isn't approved, you'll be asked to edit it.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "text": "If ChatGPT adds something that didn't happen, such as a dish, a name or a promise, delete it before you post.",
+    "src": []
+   },
+   {
+    "text": "If a review breaks Google's rules, for example it's spam or offensive, report it instead of replying: Read reviews > Report > choose a reason > Send report. Don't report a review just because you disagree with it.",
+    "src": [
+     7
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "title": "Google Business Profile Help: Manage customer reviews",
+    "url": "https://support.google.com/business/answer/3474050?hl=en-GB"
+   },
+   {
+    "title": "Google Business Profile Help: Tips to get more reviews (includes tips for review replies)",
+    "url": "https://support.google.com/business/answer/3474122?hl=en-GB"
+   },
+   {
+    "title": "OpenAI Help: Data controls in ChatGPT",
+    "url": "https://help.openai.com/en/articles/7730893-data-controls-in-chatgpt"
+   },
+   {
+    "title": "OpenAI Help: Keep your history on but turn off model training",
+    "url": "https://help.openai.com/en/articles/8983130"
+   },
+   {
+    "title": "ChatGPT: plans and pricing",
+    "url": "https://chatgpt.com/pricing"
+   },
+   {
+    "title": "Google: Business Profile (UK), free to create",
+    "url": "https://business.google.com/uk/business-profile/"
+   },
+   {
+    "title": "Google Business Profile Help: Report inappropriate reviews",
+    "url": "https://support.google.com/business/answer/4596773?hl=en-GB"
+   }
+  ],
+  "changelog": [
+   {
+    "date": "2026-10-20",
+    "text": "First version, written from Google's and OpenAI's help pages. Screenshots to come after a walkthrough in a live account."
+   }
+  ],
+  "written_from": "Google's and OpenAI's help pages"
+ },
+ "P1": {
+  "slug": "physio-session-notes-heidi",
+  "trade": "physio",
+  "title": "Draft session notes with Heidi's free plan, with patient consent",
+  "meta_title": "Draft session notes with Heidi Free, for physios | Humanify It",
+  "description": "Step-by-step: set up Heidi's free AI scribe to draft session notes, with patient consent, for you to check. UK physios, checked 20 Oct 2026.",
+  "for": "Physios and sports therapists, any team size",
+  "checked_on": "2026-10-20",
+  "vendors_affiliation": "Heidi Health",
+  "end": "A draft note from each session, written by Heidi with the patient's consent, that you check before it goes into your patient records.",
+  "time": "About 45 minutes to set up and run a practice session, with a colleague or friend playing the patient using made-up details.",
+  "cost": {
+   "text": "£0 on Heidi's free plan. Some features are limited on the free plan; Heidi's pricing page lists them.",
+   "src": [
+    5
+   ],
+   "free_tier": "Yes.",
+   "free_src": [
+    5
+   ]
+  },
+  "before": [
+   "A free Heidi account, from Heidi's website.",
+   "A laptop or phone with a working microphone and a steady internet connection.",
+   "The headings you usually use for notes, so you can pick the closest Heidi template.",
+   "The checks in 'Clinical and data protection' below, done before you use Heidi with a patient."
+  ],
+  "clinical": [
+   "Get the patient's consent before you use an AI scribe in a session.",
+   "Check every note yourself before it goes into the record. HCPC record-keeping standards still apply.",
+   "Check Heidi's UK GDPR terms and complete a DPIA (data protection impact assessment) before you use it with patients.",
+   "Never put patient-identifiable data into general chatbots such as ChatGPT.",
+   "Any screenshots we add to this guide will use demo patients only."
+  ],
+  "clinical_src": [
+   4,
+   6,
+   7
+  ],
+  "steps": [
+   {
+    "do": "Check your microphone and internet connection before you start.",
+    "where": "Your laptop or phone's built-in microphone, or an external one; wifi or mobile data",
+    "shot": "",
+    "src": [
+     2
+    ]
+   },
+   {
+    "do": "Open Scribe and start a practice session with made-up patient details.",
+    "where": "Left-hand menu > Scribe > add patient details",
+    "shot": "The Scribe session window with a made-up demo patient.",
+    "src": [
+     1,
+     2
+    ]
+   },
+   {
+    "do": "Choose the template closest to how you write notes.",
+    "where": "Session window > Templates",
+    "shot": "The Templates list with a physiotherapy-style template highlighted.",
+    "check": "your chosen template shows in the session.",
+    "src": [
+     2
+    ]
+   },
+   {
+    "do": "Add anything you want Heidi to read alongside the session, such as a referral letter. For practice, use made-up documents only.",
+    "where": "Context tab",
+    "shot": "The Context tab with a made-up referral note.",
+    "src": [
+     1,
+     2
+    ]
+   },
+   {
+    "do": "Check the green waveform is showing next to the transcribe button.",
+    "where": "Next to Start Transcribing",
+    "shot": "The green waveform beside the Start Transcribing button.",
+    "check": "the waveform moves when you speak.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Ask the patient for consent to use an AI scribe before you start. If your clinic uses a Heidi team account, an administrator can switch on a consent pop-up that appears at the start of each session.",
+    "where": "Before you select Start Transcribing",
+    "shot": "The consent pop-up at the start of a session, on a team account with it switched on.",
+    "src": [
+     1,
+     3,
+     4
+    ]
+   },
+   {
+    "do": "Start the session.",
+    "where": "Start Transcribing (the green button)",
+    "shot": "A session in progress, with the waveform and timer running.",
+    "check": "the waveform and timer show it's transcribing.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Say your findings out loud as you go. Heidi can only write up what it hears.",
+    "where": "During the session",
+    "shot": "",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Finish transcribing when the session ends.",
+    "where": "Session window > finish transcribing",
+    "shot": "The note being generated after the session.",
+    "check": "the draft note appears in the Note tab, in your chosen template.",
+    "src": [
+     1,
+     2
+    ]
+   },
+   {
+    "do": "Read the whole note against what happened, and correct anything wrong or missing.",
+    "where": "Note tab; the Transcript tab shows exactly what was captured",
+    "shot": "The Note tab and Transcript tab side by side, demo patient only.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "If the note is too long or too short, change the detail level.",
+    "where": "Scribe settings > detail level (Brief, Goldilocks, Detailed or Super Detailed)",
+    "shot": "The detail level options in Scribe settings.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Copy the checked note into the system you keep patient records in.",
+    "where": "Copy the note, then paste it into WriteUpp, Cliniko or whichever system you use",
+    "shot": "The checked demo note selected for copying.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "do": "Run two or three more practice sessions before you use Heidi with a patient.",
+    "where": "Scribe > new session",
+    "shot": "",
+    "src": [
+     1
+    ]
+   }
+  ],
+  "after_steps": "",
+  "after_steps_src": [],
+  "prompts_intro": "These are for a general chatbot such as ChatGPT. They use only your business details from the measurements card. Never add patient details.",
+  "prompts_src": [],
+  "prompts": [
+   {
+    "title": "A waiting-room notice",
+    "text": "Use my measurements card below. Write a short, plain-English notice for my waiting room saying I may use an AI scribe called Heidi to help write session notes, that I'll always ask first, and that patients can say no. Under 80 words, in my tone.\n[paste your measurements card]"
+   },
+   {
+    "title": "How to ask in the room",
+    "text": "Use my measurements card below. Write two friendly sentences I can say at the start of a session to ask a patient if they're happy for me to use an AI scribe to help write my notes. Keep it in my tone.\n[paste your measurements card]"
+   },
+   {
+    "title": "A line for booking emails",
+    "text": "Use my measurements card below. Write one short line for my booking confirmation email saying I may ask to use an AI note-taking tool in sessions and will always ask first.\n[paste your measurements card]"
+   }
+  ],
+  "snags": [
+   {
+    "text": "If there's no green waveform, check your microphone is connected and allowed in your browser, then test it again.",
+    "src": [
+     1,
+     2
+    ]
+   },
+   {
+    "text": "If the note misses something you did, you probably didn't say it out loud. Add it yourself, or use dictation to speak it into the note.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "text": "If the note's layout doesn't suit you, switch templates and regenerate the note.",
+    "src": [
+     1
+    ]
+   },
+   {
+    "text": "If your internet connection drops, the Heidi mobile app can run sessions offline.",
+    "src": [
+     2
+    ]
+   },
+   {
+    "text": "If the patient says no, don't start transcribing. Write your notes the way you usually do.",
+    "src": [
+     4
+    ]
+   }
+  ],
+  "sources": [
+   {
+    "title": "Heidi Help: Complete your first session",
+    "url": "https://support.heidihealth.com/en/articles/14648439-complete-your-first-session"
+   },
+   {
+    "title": "Heidi Help: Getting started with Heidi II",
+    "url": "https://support.heidihealth.com/en/articles/14648425-getting-started-with-heidi-ii"
+   },
+   {
+    "title": "Heidi Help: Admins, manage your team",
+    "url": "https://support.heidihealth.com/en/articles/14648633-admins-manage-your-team"
+   },
+   {
+    "title": "Heidi Help: Obtaining patient consent",
+    "url": "https://support.heidihealth.com/en/articles/8973150-obtaining-patient-consent"
+   },
+   {
+    "title": "Heidi: UK pricing",
+    "url": "https://www.heidihealth.com/en-gb/pricing"
+   },
+   {
+    "title": "HCPC: Standards of conduct, performance and ethics",
+    "url": "https://www.hcpc-uk.org/standards/standards-of-conduct-performance-and-ethics/"
+   },
+   {
+    "title": "ICO: Data protection impact assessments",
+    "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/data-protection-impact-assessments-dpias/"
+   }
+  ],
+  "changelog": [
+   {
+    "date": "2026-10-20",
+    "text": "First version, written from Heidi's help pages. Screenshots to come after a walkthrough in a live account, with demo patients only."
+   }
+  ],
+  "written_from": "Heidi Health's help pages"
+ }
+}
