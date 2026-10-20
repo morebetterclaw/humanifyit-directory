@@ -254,3 +254,19 @@ test('hash: malformed %-encoding is skipped, not thrown', () => {
   assert.equal(r.newSpend, 14.95);
   assert.doesNotThrow(() => Fit.renderKit(data, 'salon', 'no_shows', Fit.parseHash('#u=%E0%A4')));
 });
+
+test('Fresha kit card: price shown once (solo note, team note)', () => {
+  const txt = (h) => h.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  const solo = txt(Fit.renderKit(data, 'salon', 'no_shows', Fit.parseHash('#t=solo&b=50&s=none&c=ok')));
+  assert.match(solo, /approx\. £14\.95 a month \+ VAT \(checked 20 Oct 2026\) or £9\.95 per team member\/month ex VAT if you have staff\. Card fees extra if you take deposits\./);
+  assert.ok(!/£14\.95\/month ex VAT for one person/.test(solo));
+  let seen = 0;
+  for (const t of ['small', 'large']) for (const s of ['none', 'fresha']) for (const job of ['no_shows', 'social']) {
+    const k = txt(Fit.renderKit(data, 'salon', job, Fit.parseHash(`#t=${t}&b=50&s=${s}&c=ok`)));
+    if (!/Fresha \(opens/.test(k)) continue;              // budget swap took Fresha out
+    seen++;
+    assert.equal((k.match(/£9\.95/g) || []).length, 1, `${job} ${t} ${s}: £9.95 once`);
+    assert.match(k, /× £9\.95\).{0,60}\(checked 20 Oct 2026\) Card fees extra if you take deposits\./);
+  }
+  assert.ok(seen >= 6, 'team variants showing Fresha were checked: ' + seen);
+});

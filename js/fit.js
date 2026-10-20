@@ -295,7 +295,9 @@
         '<span class="vh"> (opens in a new tab)</span></a></h3>' : '<h3>Your current app</h3>');
       h.push('<p>' + esc(why) + '</p>');
       h.push('<p class="price">' + esc(priceLine(data, s, res.seats)) + '</p>');
-      if (t && t.note) h.push('<p class="small">' + esc(t.note) + '</p>');
+      // note_team (optional) replaces note when the price line is already worked out per team member
+      var note = t && (res.seats > 1 && t.note_team ? t.note_team : t.note);
+      if (note) h.push('<p class="small">' + esc(note) + '</p>');
       h.push('</li>');
     });
     h.push('</ol>');
