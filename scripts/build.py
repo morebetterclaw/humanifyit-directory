@@ -360,7 +360,8 @@ def main():
     new = replace_block(new, "trades", render_tiles(trades, groups))
     new = re.sub(r"(<!-- build:count -->)\d*(<!-- /build:count -->)", r"\g<1>%d\g<2>" % len(tools), new)
     # the /tools/ meta, og and twitter descriptions open with the count too
-    new = re.sub(r'(content=")\d+( AI tools for UK )', r"\g<1>%d\g<2>" % len(tools), new)
+    # (plain "tools", not "AI tools": the count includes LifeLight, which we don't call AI)
+    new = re.sub(r'(content=")\d+(?: AI)? tools for UK ', r"\g<1>%d tools for UK " % len(tools), new)
 
     changed = []
     home = re.sub(r"(<!-- build:count -->)\d*(<!-- /build:count -->)", r"\g<1>%d\g<2>" % len(tools), apply_site_copy(home))
