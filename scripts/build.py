@@ -38,7 +38,7 @@ SITE_JSON = os.path.join(T.DATA, "site.json")
 
 
 def apply_site_copy(page):
-    """Set <title>, the meta/og/twitter descriptions, the H1 and the hero subhead
+    """Set <title> and og/twitter titles (all the same), the meta/og/twitter descriptions (all the same), the H1 and the hero subhead
     from data/site.json, so hero copy lives in data and survives rebuilds."""
     if not os.path.exists(SITE_JSON):
         return page
@@ -53,6 +53,8 @@ def apply_site_copy(page):
         (r'<meta name="description" content="[^"]*">', '<meta name="description" content="%s">' % e(c["description"])),
         (r'<meta property="og:description" content="[^"]*">', '<meta property="og:description" content="%s">' % e(c["description"])),
         (r'<meta name="twitter:description" content="[^"]*">', '<meta name="twitter:description" content="%s">' % e(c["description"])),
+        (r'<meta property="og:title" content="[^"]*">', '<meta property="og:title" content="%s">' % e(c["title"])),
+        (r'<meta name="twitter:title" content="[^"]*">', '<meta name="twitter:title" content="%s">' % e(c["title"])),
         (r'<h1 id="headline">[^<]*</h1>', '<h1 id="headline">%s</h1>' % e(c["h1"])),
         (r'<p class="lede">[^<]*</p>', '<p class="lede">%s</p>' % e(c["subhead"])),
     ]
